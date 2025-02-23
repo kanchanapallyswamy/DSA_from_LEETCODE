@@ -13,8 +13,8 @@ class Solution {
         int c=0;
         if(l1==null)return l2;
         if(l2==null)return l1;
-        ListNode dummy=new ListNode(-2);
-        ListNode temp=dummy;
+        ListNode head=new ListNode(-2);
+        ListNode temp=head;
         while(l1!=null || l2!=null || c!=0){
             int a= l1!=null ? l1.val : 0;
             int b= l2!=null ? l2.val : 0;
@@ -26,6 +26,6 @@ class Solution {
             if(l1!=null)l1=l1.next;
             if(l2!=null)l2=l2.next;
         }
-        return dummy.next;
+        return head.next;
     }
 }
