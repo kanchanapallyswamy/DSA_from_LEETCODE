@@ -7,13 +7,9 @@ class Solution {
         return k.trim();
     }
     String change(String s){
-        String k="",p="";
+        String k="";
         if(Character.isLowerCase(s.charAt(0)) || Character.isUpperCase(s.charAt(0)) )k+=Character.toUpperCase(s.charAt(0)); 
-        for(int i=1;i<s.length();i++){
-            p+=s.charAt(i);
-        }
-        k+=p.toLowerCase();
-                
+        k+=s.substring(1).toLowerCase();       
         return k;
     }
     
