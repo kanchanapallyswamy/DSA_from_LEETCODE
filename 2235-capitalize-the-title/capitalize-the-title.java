@@ -1,9 +1,12 @@
 class Solution {
     public String capitalizeTitle(String s) {
         String a[]=s.split(" ");
-        for(var i=0;i<a.length;i++)if(a[i].length()>=3)a[i]=change(a[i]);else a[i]=a[i].toLowerCase();
         String k="";
-        for(var i:a)k+=i+" ";
+        for(var i=0;i<a.length;i++){
+            if(a[i].length()>=3)a[i]=change(a[i]);
+            else a[i]=a[i].toLowerCase();
+            k+=a[i]+" ";
+        }
         return k.trim();
     }
     String change(String s){
