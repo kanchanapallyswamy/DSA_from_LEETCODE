@@ -15,17 +15,32 @@ class Solution {
         if(l2==null)return l1;
         ListNode head=new ListNode(-2);
         ListNode temp=head;
-        while(l1!=null || l2!=null || c!=0){
-            int a= l1!=null ? l1.val : 0;
-            int b= l2!=null ? l2.val : 0;
+        while(l1!=null && l2!=null){
+            int a=l1.val;
+            int b=l2.val;
             int s=a+b+c;
             ListNode nn=new ListNode(s%10);
             c=s/10;
             temp.next=nn;
-            temp=nn;
-            if(l1!=null)l1=l1.next;
-            if(l2!=null)l2=l2.next;
+            temp=temp.next;
+            l1=l1.next;
+            l2=l2.next;
         }
+        while(l1!=null){
+            int s=l1.val+c;
+            temp.next=new ListNode(s%10);
+            c=s/10;
+            temp=temp.next;
+            l1=l1.next;
+        }
+        while(l2!=null){
+            int s=l2.val+c;
+            temp.next=new ListNode(s%10);
+            c=s/10;
+            temp=temp.next;
+            l2=l2.next;
+        }
+        if(c!=0)temp.next=new ListNode(c);
         return head.next;
     }
 }
