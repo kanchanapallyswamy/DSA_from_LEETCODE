@@ -3,12 +3,12 @@ class Solution {
         int n=1000001;
         List<Integer> l=new ArrayList<>();
         List<Pair> outer=new ArrayList<>();
-        boolean p[]=new boolean[1000001];
+        boolean p[]=new boolean[right+1];
         Arrays.fill(p,true);
         p[0]=p[1]=false;
-        for(int i=2;i*i<=n;i++){
+        for(int i=2;i*i<=right;i++){
             if(p[i]){
-                for(int j=i*i;j<n;j+=i){
+                for(int j=i*i;j<=right;j+=i){
                     p[j]=false;
                 }
             }
@@ -18,6 +18,7 @@ class Solution {
         }
 
         System.out.println(l);
+
         for(int i=0;i<l.size()-1;i++){
                 int m=l.get(i+1);
                 int m1=l.get(i);
@@ -27,9 +28,6 @@ class Solution {
         outer.sort( (x,y) ->{
             return x.c-y.c;
         });
-        for(var i:outer){
-            System.out.println(i.a+" "+i.b+" "+i.c);
-        }
         if(l.size()<2)
         return new int[]{-1,-1};
         return new int[]{outer.get(0).a,outer.get(0).b};
