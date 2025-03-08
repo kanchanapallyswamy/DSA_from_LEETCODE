@@ -1,62 +1,59 @@
 class LRUCache {
-    CDLLNode lst;
+    opp k;
+    Map<Integer,Node> mp;
     int size;
     int capacity;
-    Map<Integer,Node> mp;
     public LRUCache(int capacity) {
+        k=new opp();
         this.size=0;
         this.capacity=capacity;
-        lst=new CDLLNode();
         mp=new HashMap<>();
     }
     
     public int get(int key) {
         if(!mp.containsKey(key))return -1;
-        Node nn=mp.get(key);
-        lst.moveFront(nn);
-        return nn.value;
-
+        Node ans=mp.get(key);
+        k.moveFront(ans);
+        return ans.value;
     }
     
     public void put(int key, int value) {
-        if(mp.containsKey(key)){
+         if(mp.containsKey(key)){
             Node nn=mp.get(key);
-            nn.value=value;
-            lst.moveFront(nn);
+                nn.value=value;  
+                k.moveFront(nn);
         }
-        else if(size<capacity){
-                Node nn=lst.addAtHead(key,value);
-                mp.put(key,nn);
-                size++;
+        
+        else{
+            if(size<capacity){ 
+            Node nn= k.addAtHead(key,value);
+            mp.put(key,nn);
+            size++;
         }
         else{
-            int k=lst.deleteAtLast();
-            mp.remove(k);
-            Node nn=lst.addAtHead(key,value);
+             int p=k.deleteAtLast();
+             mp.remove(p);
+            Node nn= k.addAtHead(key,value);
             mp.put(key,nn);
+            
+
+                }
         }
     }
 }
-class Node{
-    int key,value;
-    Node next,prev;
-    Node(int k,int v){
-        key=k;
-        value=v;
-    }
-}
-class CDLLNode{
+class opp{
     Node head;
-    public CDLLNode(){
+    public opp(){
         head=null;
     }
-    Node addAtHead(int key, int val){
-        Node nn=new Node(key,val);
-        nn.next=nn;nn.prev=nn;
+    Node addAtHead(int key,int value){
+        Node nn=new Node(key,value);
+        nn.next=nn;
+        nn.prev=nn;
         if(head==null){
             head=nn;
             return nn;
-        }
+        } 
         Node last=head.prev;
         nn.next=head;
         head.prev=nn;
@@ -65,21 +62,21 @@ class CDLLNode{
         head=nn;
         return nn;
     }
+
     int deleteAtLast(){
         if(head==null)return -1;
         Node last=head.prev;
-        int ans=last.key;
         if(head==last){
             head=null;
-            return ans;
+            return last.key;
         }
         Node last_scnd=last.prev;
         last_scnd.next=head;
         head.prev=last_scnd;
-        return ans;
+        return last.key;
     }
     void moveFront(Node nn){
-        if(head==nn)return ;
+      if(head==nn)return ;
         nn.prev.next=nn.next;
         nn.next.prev=nn.prev;
         Node last= head.prev;
@@ -88,9 +85,17 @@ class CDLLNode{
         head.prev=nn;
         nn.prev=last;
         head=nn;
-        return ;
+        return ;        
     }
 
+}
+class Node{
+    int key,value;
+    Node prev,next;
+    Node(int k,int v){
+        key=k;
+        value=v;
+    }
 }
 
 /**
