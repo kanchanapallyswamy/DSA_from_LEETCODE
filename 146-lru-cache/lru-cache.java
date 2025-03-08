@@ -26,15 +26,14 @@ class LRUCache {
         }
         else if(size<capacity){
                 Node nn=lst.addAtHead(key,value);
-                size++;
                 mp.put(key,nn);
+                size++;
         }
         else{
             int k=lst.deleteAtLast();
             mp.remove(k);
             Node nn=lst.addAtHead(key,value);
             mp.put(key,nn);
-
         }
     }
 }
