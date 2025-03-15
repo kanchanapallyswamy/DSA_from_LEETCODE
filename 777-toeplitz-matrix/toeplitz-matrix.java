@@ -1,32 +1,24 @@
 class Solution {
     public boolean isToeplitzMatrix(int[][] m) {
-       Set<Integer> inner=new HashSet<>();
         int r=m.length,c=m[0].length;
-
-        // int j=0;
-    
-        for(int si=0,sj=0;si<r;si++){
-            int i=si,j=sj;
-            while(i>=0 && j>=0 && i<r && j<c){
-                inner.add(m[i][j]);
-                i++;j++;
+        for(int a=0,b=0;a<r;a++){
+            int i=a,j=b;
+            Set<Integer> st=new HashSet<>();
+            while(i<r && j<c && i>=0 && j>=0){
+                st.add(m[i++][j++]);
             }
-            if(inner.size()>=2)return false;
-            inner=new HashSet<>();
+            System.out.println(st);
+            if(st.size()>1 )return false;
         }
-        for(int sj=1,si=0;sj<c;sj++){
-            int i=si,j=sj;
-             while(i>=0 && j>=0 && i<r && j<c){
-                inner.add(m[i][j]);
-                i++;j++;
+        for(int b=1,a=0;b<c;b++){
+            int i=a,j=b;
+            Set<Integer> st=new HashSet<>();
+            while(i<r && j<c && i>=0 && j>=0){
+                st.add(m[i++][j++]);
             }
-           if(inner.size()>=2)return false;
-            inner=new HashSet<>();
-
+            System.out.println(st);
+            if(st.size()>1)return false;
         }
-        
-        return true;
-
+    return true;
     }
-    
 }
