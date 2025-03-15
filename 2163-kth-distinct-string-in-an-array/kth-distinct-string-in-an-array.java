@@ -1,11 +1,11 @@
 class Solution {
-    public String kthDistinct(String[] a, int k) {
-        Map<String,Integer> mp=new LinkedHashMap<>();
-        for(var i:a)mp.put(i,1+mp.getOrDefault(i,0));
-        int c=1;
-        for(var i:mp.entrySet()){
-            if(c==k && i.getValue()==1)return i.getKey();
-            else if(i.getValue()==1)c++;
+    public String kthDistinct(String[] arr, int k) {
+        Map<String,Integer> mp=new HashMap<>();
+        for(var i:arr)mp.put(i,1+mp.getOrDefault(i,0));
+        int p=1;
+        for(var i:arr){
+            if(mp.get(i)==1 && p==k)return i;
+            else if(mp.get(i)==1)p++;
         }
         return "";
     }
