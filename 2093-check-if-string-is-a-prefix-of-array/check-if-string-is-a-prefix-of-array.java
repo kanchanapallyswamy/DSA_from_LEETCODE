@@ -5,7 +5,6 @@ class Solution {
           x+=w[i];
           if(x.length()>=s.length()) break;
         }
-         return x.equals(s);
-        
+         if(x.compareTo(s)==0) return true;   return false;  
     }
 }
