@@ -1,11 +1,11 @@
 class Solution {
     public boolean isPrefixString(String s, String[] w) {
-        String k="";
-        for(var i=0;i<w.length;i++){
-            k+=w[i];
-            if(k.equals(s))return true;
-            if(i==w.length-1 && !k.equals(s))return false;
+        String x="";
+        for(int i=0;i<w.length;i++){
+          x+=w[i];
+          if(x.length()>=s.length()) break;
         }
-        return true;
+         return x.equals(s);
+        
     }
 }
