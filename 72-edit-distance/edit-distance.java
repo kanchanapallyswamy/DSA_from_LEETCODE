@@ -1,30 +1,17 @@
 class Solution {
-  public int minDistance(String a, String b) {
-    return helper(a, b, a.length(), b.length());
-    // for(int i=0;i<ans.length;i++){
-    // for(int j=0;j<ans[0].length;j++){
-    // System.out.print(ans[i][j]+" ");
-    // }
-    // System.out.println();
-    // }
-    // System.out.println();
-    // System.out.println();
-    // return 0;
-  }
-  public int helper(String a, String b, int n1, int n2) {
-    int dp[][] = new int[n1 + 1][n2 + 1];
-    dp[n1][n2] = 0;
-    int k = n2;
-    for (int i = 0; i < n2; i++) dp[n1][i] = k--;
-    k = n1;
-    for (int i = 0; i < n1; i++) dp[i][n2] = k--;
-    for (int i = n1 - 1; i >= 0; i--) {
-      for (int j = n2 - 1; j >= 0; j--) {
-        if (a.charAt(i) == b.charAt(j)) dp[i][j] = dp[i + 1][j + 1];
-        else dp[i][j] = 1 + Math.min(dp[i + 1][j + 1], Math.min(dp[i][j + 1], dp[i + 1][j]));
-      }
+    int [][]dp=new int[501][501];
+    public int minDistance(String s1, String s2) {
+        for(int i=0;i<501;i++)Arrays.fill(dp[i],-1);
+        return find(s1.length()-1,s2.length()-1,s1,s2);
     }
-    return dp[0][0];
-  }
-
+    int find(int i,int j,String s1,String s2){
+        if(i < 0)return j+1;
+        if(j < 0)return i+1;
+        if(dp[i][j]!=-1)return dp[i][j];
+        if(s1.charAt(i)==s2.charAt(j))return dp[i][j]=find(i-1,j-1,s1,s2);
+        int insert=find(i,j-1,s1,s2);
+        int delete=find(i-1,j,s1,s2);
+        int replace=find(i-1,j-1,s1,s2);
+        return dp[i][j]=1+Math.min(  insert , Math.min( delete , replace ));
+            }
 }
