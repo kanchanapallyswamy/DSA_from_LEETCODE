@@ -13,20 +13,10 @@ class Solution {
       System.out.println(median);
       for(var i=0;i<r;i++){
         for(var j=0;j<c;j++){
-           if(m[i][j]<median){
-            while(m[i][j]!=median){
-                m[i][j]+=x;
-                cnt++;
-                if(m[i][j]>median)return -1;
-            }
-           }
-           else if(m[i][j]!=median){
-            while(m[i][j]>median){
-                m[i][j]-=x;
-                cnt++;
-                if(m[i][j]<median)return -1;
-            }
-           }
+           int ans=Math.abs(m[i][j]-median);
+           if(ans%x==0)cnt+=ans/x;
+           else return -1;
+           
         }
       }
       return cnt;
