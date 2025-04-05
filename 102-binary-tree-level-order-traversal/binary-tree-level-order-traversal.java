@@ -40,9 +40,7 @@ class Solution {
             }
         }
         for(int i=0;i<mp.size();i++){
-            if(i%2 == 0)inner.addAll(mp.get(i));
-            else inner.addAll(mp.get(i));
-            outer.add(inner);
+            outer.add(mp.get(i));
             inner = new ArrayList<>();
         }
     return outer;
